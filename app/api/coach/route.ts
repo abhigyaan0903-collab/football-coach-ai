@@ -32,7 +32,7 @@ Coach:`;
 
     let response: Response | null = null;
     let data: any = null;
-    const models = ["gemini-3.8-flash", "gemini-3.6-flash"];
+    const models = ["gemini-3.8-flash", "gemini-3.6-flash", "gemini-3.5-flash-lite"];
 
     for (const model of models) {
       try {
