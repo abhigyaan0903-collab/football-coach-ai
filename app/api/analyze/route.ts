@@ -50,30 +50,56 @@ Return valid JSON only, without Markdown fences, with these keys:
 overall_score (integer from 0 to 100), summary (string), strengths (array of strings), improvements (array of strings), drills (array of objects with name, instructions, sets, reps), observations (array of strings), confidence_note (string).
 Assess only what is visibly supported by the footage. Be honest about camera angle, clip length, frame sampling and anything that cannot be assessed. Do not invent measurements or claim certainty where the footage does not support it. Give safe, age-appropriate practice guidance. Scores are coaching estimates, not objective scientific measurements.`;
 
-    const response = await fetch("https://generativelanguage.googleapis.com/v1beta/interactions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-goog-api-key": apiKey
-      },
-      body: JSON.stringify({
-        model: "gemini-3.8-flash",
-        input: [
-          { type: "text", text: prompt },
-          {
-            type: "video",
-            data: videoBase64,
-            mime_type: mimeType === "video/quicktime" ? "video/mov" : mimeType
-          }
-        ],
-        generation_config: { thinking_level: "low", max_output_tokens: 1800 }
-      })
-    });
+    let response: Response | null = null;
+    let data: any = null;
+    const models = ["gemini-3.8-flash", "gemini-3.6-flash"];
 
-    const data = await response.json();
-    if (!response.ok) {
-      const message = data.error?.message || data.message || "Video analysis failed.";
-      return NextResponse.json({ error: message }, { status: 502 });
+    for (const model of models) {
+      try {
+        response = await fetch("https://generativelanguage.googleapis.com/v1beta/interactions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": apiKey
+          },
+          body: JSON.stringify({
+            model,
+            input: [
+              { type: "text", text: prompt },
+              {
+                type: "video",
+                data: videoBase64,
+                mime_type: mimeType === "video/quicktime" ? "video/mov" : mimeType
+              }
+            ],
+            generation_config: { thinking_level: "low", max_output_tokens: 1800 }
+          })
+        });
+
+        data = await response.json();
+        if (response.ok) break;
+
+        const errorMessage = data.error?.message || data.message || "Video analysis failed.";
+        const transient = [429, 500, 502, 503, 504].includes(response.status)
+          || /high demand|temporar|overload|unavailable|resource_exhausted/i.test(errorMessage);
+
+        if (!transient || model === models[models.length - 1]) {
+          return NextResponse.json({
+            error: transient
+              ? "The video AI is busy right now. Please wait a minute and try again."
+              : errorMessage
+          }, { status: transient ? 503 : 502 });
+        }
+      } catch (error) {
+        console.error(`Gemini video request failed for ${model}:`, error);
+        if (model === models[models.length - 1]) {
+          return NextResponse.json({ error: "Video analysis is temporarily unavailable. Please try again shortly." }, { status: 503 });
+        }
+      }
+    }
+
+    if (!response?.ok || !data) {
+      return NextResponse.json({ error: "Video analysis is temporarily unavailable. Please try again shortly." }, { status: 503 });
     }
 
     const raw = typeof data.output_text === "string"
