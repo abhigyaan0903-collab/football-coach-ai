@@ -45,10 +45,24 @@ export async function POST(req: Request) {
     }
 
     const videoBase64 = Buffer.from(videoBytes).toString("base64");
-    const prompt = `Analyse this football training video as a professional, constructive coach. Skill category: ${category}.
-Return valid JSON only, without Markdown fences, with these keys:
-overall_score (integer from 0 to 100), summary (string), strengths (array of strings), improvements (array of strings), drills (array of objects with name, instructions, sets, reps), observations (array of strings), confidence_note (string).
-Assess only what is visibly supported by the footage. Be honest about camera angle, clip length, frame sampling and anything that cannot be assessed. Do not invent measurements or claim certainty where the footage does not support it. Give safe, age-appropriate practice guidance. Scores are coaching estimates, not objective scientific measurements.`;
+    const prompt = `You are an expert football performance analyst. Review this video as a professional, constructive coach. Skill category: ${category}.
+Build a detailed coaching dossier, but assess ONLY what is visibly supported by the clip. Do not guess body mechanics hidden by the camera, invent ball speed/angles/distances, or claim measurements that were not provided.
+Return valid JSON only, without Markdown fences, using this exact structure:
+{
+  "overall_score": integer 0-100,
+  "summary": "clear 2-4 sentence executive assessment",
+  "strengths": ["3-5 specific visible strengths"],
+  "improvements": ["3-5 prioritised, actionable improvements"],
+  "technique_breakdown": [
+    {"dimension":"technical dimension","rating": integer 0-10 or null if not assessable, "evidence":"specific visible evidence or why it cannot be assessed"}
+  ],
+  "observations": ["4-6 concise observations in the order they occur; include timestamps only when confidently visible/derivable, otherwise do not invent them"],
+  "drills": [
+    {"name":"drill name","instructions":"clear step-by-step instructions","setup":"equipment and layout, with a simple alternative","sets":"sensible set count","reps":"duration or repetitions with rest","coaching_cues":["cue 1","cue 2"],"progression":"one safe way to make it more challenging later"}
+  ],
+  "confidence_note":"explain camera angle, clip length, visibility, sampling limits and what could not be assessed"
+}
+For technique_breakdown choose 4-6 relevant dimensions for this skill (for example balance, body positioning, approach, contact/receiving technique, follow-through, decision-making, recovery). Use null ratings when evidence is insufficient; never fill gaps with assumptions. Provide 3 practical drills matched to the observed priorities. Be constructive, precise, age-appropriate and safety-aware. Scores are coaching estimates, not scientific measurements or guarantees.`;
 
     let response: Response | null = null;
     let data: any = null;
@@ -72,7 +86,7 @@ Assess only what is visibly supported by the footage. Be honest about camera ang
                 mime_type: mimeType === "video/quicktime" ? "video/mov" : mimeType
               }
             ],
-            generation_config: { thinking_level: "low", max_output_tokens: 1800 }
+            generation_config: { thinking_level: "low", max_output_tokens: 2800 }
           })
         });
 
