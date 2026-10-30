@@ -1,3 +1,68 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-export async function POST(req: Request) { try { const supabase = await createClient(); const { data: { user } } = await supabase.auth.getUser(); if (!user) return NextResponse.json({ error: "Sign in to use your AI coach." }, { status: 401 }); const { message, history = [] } = await req.json(); if (typeof message !== "string" || !message.trim() || message.length > 4000) return NextResponse.json({ error: "Enter a message under 4,000 characters." }, { status: 400 }); const apiKey = process.env.GEMINI_API_KEY; if (!apiKey) return NextResponse.json({ error: "AI coach is not configured yet. Add GEMINI_API_KEY to the Vercel project environment variables." }, { status: 503 }); const contents = [...history.slice(-8).map((m: {role:string;content:string}) => ({ role: m.role === "assistant" ? "model" : "user", parts: [{ text: m.content }] })), { role: "user", parts: [{ text: message }] }]; const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ system_instruction: { parts: [{ text: "You are Football Coach AI, a knowledgeable, supportive football coach. Give practical, age-appropriate advice on technique, tactics, decision-making, fitness fundamentals, and safe training. Ask clarifying questions when needed. Never claim to have watched footage unless it was supplied. Structure longer answers with clear steps." }] }, contents, generationConfig: { temperature: 0.65, maxOutputTokens: 900 } }) }); const data = await response.json(); if (!response.ok) return NextResponse.json({ error: data.error?.message || "The AI service could not complete this request." }, { status: 502 }); const reply = data.candidates?.[0]?.content?.parts?.map((p: {text?:string}) => p.text || "").join("").trim(); if (!reply) return NextResponse.json({ error: "The AI coach returned an empty response. Try again." }, { status: 502 }); return NextResponse.json({ reply }); } catch { return NextResponse.json({ error: "Something went wrong. Please try again." }, { status: 500 }); } }
+
+export async function POST(req: Request) {
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      return NextResponse.json({ error: "Sign in to use your AI coach." }, { status: 401 });
+    }
+
+    const { message, history = [] } = await req.json();
+    if (typeof message !== "string" || !message.trim() || message.length > 4000) {
+      return NextResponse.json({ error: "Enter a message under 4,000 characters." }, { status: 400 });
+    }
+
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json({ error: "AI coach is not configured. Add GEMINI_API_KEY to the Vercel project environment variables." }, { status: 503 });
+    }
+
+    const recentHistory = Array.isArray(history)
+      ? history.slice(-8).map((m: { role?: string; content?: string }) =>
+          `${m.role === "assistant" ? "Coach" : "Player"}: ${String(m.content || "").slice(0, 4000)}`
+        ).join("\n")
+      : "";
+
+    const input = `You are Football Coach AI, a knowledgeable, supportive football coach. Give practical, age-appropriate advice on technique, tactics, decision-making, fitness fundamentals, and safe training. Ask clarifying questions when needed. Never claim to have watched footage unless it was supplied. Structure longer answers with clear steps.
+
+${recentHistory ? "Recent conversation:\n" + recentHistory + "\n\n" : ""}Player: ${message.trim()}
+Coach:`;
+
+    const response = await fetch("https://generativelanguage.googleapis.com/v1beta/interactions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-goog-api-key": apiKey
+      },
+      body: JSON.stringify({
+        model: "gemini-3.8-flash",
+        input,
+        generation_config: { thinking_level: "low", max_output_tokens: 900 }
+      })
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      return NextResponse.json({ error: data.error?.message || data.message || "The AI service could not complete this request." }, { status: 502 });
+    }
+
+    const reply = (typeof data.output_text === "string"
+      ? data.output_text
+      : (data.steps || [])
+          .filter((step: any) => step.type === "model_output")
+          .flatMap((step: any) => step.content || [])
+          .map((part: any) => part.text || "")
+          .join("")).trim();
+
+    if (!reply) {
+      return NextResponse.json({ error: "The AI coach returned an empty response. Try again." }, { status: 502 });
+    }
+
+    return NextResponse.json({ reply });
+  } catch (error) {
+    console.error("Football AI coach failed:", error);
+    return NextResponse.json({ error: "Something went wrong. Please try again." }, { status: 500 });
+  }
+}
