@@ -16,6 +16,8 @@ export default function Home(){
  const sb=useMemo(()=>createClient(),[]),[user,U]=useState<any>(null),[loading,L]=useState(true),[mode,Mode]=useState("signin"),[email,E]=useState(""),[password,P]=useState(""),[authErr,AE]=useState(""),[busy,B]=useState(false);
  const [section,S]=useState("overview"),[menu,MenuOpen]=useState(false),[items,I]=useState<A[]>([]),[selected,Sel]=useState<A|null>(null);
  const [file,F]=useState<File|null>(null),[skill,K]=useState("shooting"),[uploadErr,UE]=useState(""),[chat,C]=useState<M[]>([]),[msg,Msg]=useState(""),[chatErr,CE]=useState("");
+ const [plans,Plans]=useState<{id:string;title:string;focus:string;content:string;createdAt:string}[]>([]),[plansReady,PlansReady]=useState(false),[planFocus,PlanFocus]=useState("First touch and ball control"),[planLevel,PlanLevel]=useState("Beginner"),[planMinutes,PlanMinutes]=useState("30"),[planBusy,PlanBusy]=useState(false),[planErr,PlanErr]=useState("");
+ const [formation,Formation]=useState("4-3-3");
  const fileInput=useRef<HTMLInputElement>(null),chatEnd=useRef<HTMLDivElement>(null);
  useEffect(()=>{sb.auth.getUser().then(({data})=>{U(data.user);L(false)});const {data:{subscription}}=sb.auth.onAuthStateChange((_e,s)=>U(s?.user||null));return()=>subscription.unsubscribe()},[sb]);
  useEffect(()=>{PlansReady(false);if(user){load();try{const saved=localStorage.getItem("fcai-plans-"+user.id);Plans(saved?JSON.parse(saved):[])}catch{Plans([])}PlansReady(true);sb.from("profiles").upsert({id:user.id,display_name:user.user_metadata?.display_name||user.email?.split("@")[0]||"Player"}).then(()=>{})}else{Plans([])}},[user]);\n useEffect(()=>{if(user&&plansReady) localStorage.setItem("fcai-plans-"+user.id,JSON.stringify(plans))},[plans,user,plansReady]);
