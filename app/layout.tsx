@@ -1,4 +1,4 @@
 import type { Metadata } from "next";
 import "./globals.css";
-export const metadata: Metadata = { title: "Football Coach AI | Your game, understood.", description: "AI-powered football performance analysis and personalised coaching." };
+export const metadata: Metadata = { title: "Football Coach AI | Your game, understood.", description: "AI-powered football performance analysis and personalised coaching.", icons: { icon: "/football-coach-logo.svg", apple: "/football-coach-logo.svg" } };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="en"><body>{children}</body></html>; }
