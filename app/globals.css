@@ -89,3 +89,108 @@ button{color:inherit}.loading{background:#080d0b;color:#a8b8a7}.logoMark{backgro
 .planContent pre{margin:0;padding:17px;white-space:pre-wrap;overflow-wrap:anywhere;font:11px/1.9 'DM Sans',sans-serif;color:#d3dfd0;background:repeating-linear-gradient(180deg,#0e1711 0,#0e1711 39px,#101a13 40px)}
 .savedPlan{border-color:#2b3b2e}
 @media(max-width:600px){.reportScore{align-items:flex-start;gap:13px;padding:14px}.scoreRing{width:88px;height:88px;flex-basis:88px}.scoreRing>div{width:71px;height:71px}.scoreRing strong{font-size:25px}.scoreNarrative p{font-size:10px}.reportMeta span{font-size:8px}.techBreakdown{grid-template-columns:1fr}.reportCols{grid-template-columns:1fr}.planMetaGrid{grid-template-columns:1fr 1fr}.planMetaGrid>div:last-child{grid-column:span 2}.planContent pre{padding:13px;font-size:10px}.planContentHead small{display:none}}
+
+
+/* Desktop and laptop workspace refinement — preserves the mobile layout */
+@media (min-width: 781px) {
+  html { min-width: 320px; }
+  body { min-height: 100vh; }
+  .shell { min-height: 100vh; }
+  .sidebar {
+    width: 258px;
+    padding: 28px 19px 18px;
+    background: linear-gradient(180deg,#0d1710 0%,#09110c 100%);
+  }
+  .sidebar .brand { padding: 0 9px 42px; }
+  .navCaption { padding-left: 12px; margin-bottom: 5px; }
+  .sidebar nav { gap: 7px; }
+  .navItem {
+    min-height: 45px;
+    padding: 0 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    transition: background .18s ease, color .18s ease, transform .18s ease;
+  }
+  .navItem:hover { transform: translateX(2px); }
+  .sidePromo { padding: 17px; border-radius: 13px; }
+  .userRow { padding-top: 16px; }
+  .main { margin-left: 258px; min-width: 0; }
+  .topbar {
+    height: 72px;
+    padding: 0 clamp(28px,3.5vw,58px);
+    background: rgba(10,19,13,.94);
+    backdrop-filter: blur(18px);
+  }
+  .topbar > div:first-of-type { font-size: 12px; }
+  .topRight { gap: 18px; }
+  .content {
+    width: min(1440px,100%);
+    padding: 42px clamp(28px,3.5vw,58px) 58px;
+  }
+  .heading { margin-bottom: 30px; }
+  .heading h1 { font-size: clamp(29px,2.1vw,36px); letter-spacing: -1.25px; }
+  .heading p { font-size: 12px; max-width: 680px; }
+  .heading > .primary { min-height: 44px; padding: 0 18px; font-size: 12px; }
+  .hero {
+    min-height: 292px;
+    padding: 39px 44px;
+    border-radius: 19px;
+    margin-bottom: 38px;
+  }
+  .hero > div:first-child { max-width: 590px; }
+  .hero h2 { font-size: clamp(34px,2.7vw,43px); }
+  .hero p { max-width: 470px; font-size: 12px; }
+  .heroBall { width: 172px; height: 172px; right: 9%; }
+  .heroBall svg { width: 88px; height: 88px; }
+  .sectionTitle { margin-bottom: 16px; }
+  .sectionTitle h2 { font-size: 17px; }
+  .sectionTitle p { font-size: 11px; }
+  .metrics { gap: 16px; margin-bottom: 24px; }
+  .metric { padding: 21px; border-radius: 14px; }
+  .metric strong { font-size: 33px; margin: 15px 0 6px; }
+  .metric p { font-size: 11px; }
+  .quickGrid { gap: 13px; }
+  .quickTile {
+    min-height: 132px;
+    padding: 18px;
+    border-radius: 14px;
+    transition: transform .18s ease,border-color .18s ease,background .18s ease;
+  }
+  .quickTile:hover { transform: translateY(-3px); border-color: #567344; background: linear-gradient(145deg,#1a2b1d,#111b14); }
+  .quickTile > svg:first-child { width: 23px; height: 23px; }
+  .quickTile b { font-size: 12px; }
+  .quickTile span { font-size: 10px; }
+  .lower { gap: 17px; }
+  .panel { border-radius: 14px; }
+  .panelTitle h3 { font-size: 16px; }
+  .fileRow { padding: 14px 2px; }
+  .fileName b { font-size: 11px; }
+  .fileName small { font-size: 10px; }
+  .twoCol { gap: 18px; }
+  .uploadPanel,.guide,.planBuilder,.planTips,.tacticsControls { padding: 27px; }
+  .dropzone { min-height: 205px; }
+  .chatPanel { max-width: 1120px; width: 100%; }
+  .chatBody { height: min(58vh,650px); min-height: 430px; padding: 28px; }
+  .chatForm { margin: 0 22px; }
+  .chatForm input { font-size: 12px; }
+  .planLayout { gap: 18px; }
+  .tacticsLayout { gap: 18px; }
+  .footballPitch { height: min(62vw,680px); max-width: 620px; }
+  .pitchPanel { padding: 22px; }
+  .analyticsPanel { padding: 26px; }
+  .skillBar { margin: 21px 0; }
+  .skillBar b { font-size: 11px; }
+  .skillBar span { font-size: 10px; }
+  .main footer { padding: 18px clamp(28px,3.5vw,58px); }
+}
+@media (min-width: 1280px) {
+  .content { padding-top: 48px; }
+  .hero { min-height: 315px; }
+  .lower { grid-template-columns: 1.7fr .85fr; }
+  .trainingGrid { gap: 18px; }
+}
+@media (min-width: 1600px) {
+  .sidebar { width: 278px; padding-left: 22px; padding-right: 22px; }
+  .main { margin-left: 278px; }
+  .content { width: min(1540px,100%); }
+}
