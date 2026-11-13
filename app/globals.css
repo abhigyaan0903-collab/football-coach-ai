@@ -194,3 +194,94 @@ button{color:inherit}.loading{background:#080d0b;color:#a8b8a7}.logoMark{backgro
   .main { margin-left: 278px; }
   .content { width: min(1540px,100%); }
 }
+
+
+/* PERFORMANCE LAB — orange + neon green analytics system */
+:root{--lab-orange:#ff873f;--lab-orange-soft:#ffad75;--lab-green:#b9f36b;--lab-panel:#101914;--lab-border:#2a382e}
+.brand b,.eyebrow{color:var(--lab-orange)}
+.primary,.hero button{background:var(--lab-orange);color:#1b120c;box-shadow:0 8px 24px #ff873f20}
+.primary:hover{background:#ffa064}
+.secondary{background:#263522;color:var(--lab-green)}
+.navItem.active{background:#ff873f18;color:#ffb17e;box-shadow:inset 2px 0 var(--lab-orange)}
+.navItem i{background:var(--lab-orange);color:#1b120c}
+.sidePromo>svg,.sidePromo button,.textBtn{color:var(--lab-orange)}
+.avatar{background:var(--lab-orange);color:#1b120c}
+.topRight i,.online i{background:var(--lab-green)}
+.hero{background:radial-gradient(circle at 82% 46%,#65351f 0,#35251b 27%,transparent 60%),linear-gradient(115deg,#211a15,#151914 65%,#1c2017);border-color:#513321}
+.hero small{color:var(--lab-orange-soft)}
+.hero h2 em,.authCard h1 em{color:var(--lab-orange)}
+.heroBall{background:radial-gradient(circle at 35% 30%,#ffc08d,#ff873f 65%,#a94d1e);color:#21150e}
+.fileIcon{color:var(--lab-orange);background:#352319}
+.score,.metric strong i{color:var(--lab-green)}
+.coachIcon{background:linear-gradient(140deg,#ffad75,#b9f36b);color:#17200f}
+.dropzone{color:var(--lab-orange);border-color:#75462b}
+.dropzone:hover{border-color:var(--lab-orange);background:#241a14}
+.dropzone>svg,.guide>svg,.guide h3,.guideRow>b{color:var(--lab-orange)}
+.reportSectionHeading>small,.scoreNarrative small{color:var(--lab-orange)}
+.techTrack i{background:linear-gradient(90deg,#ff873f,#b9f36b)}
+.reportCols .reportPositive{border-top-color:#b9f36b}
+.reportCols .reportFocus{border-top-color:#ff873f}
+.drillNumber{background:var(--lab-orange);color:#21150e}
+.drillCue{color:#ffbd91}
+.quickTile>svg:first-child{color:var(--lab-orange)}
+.quickTile:hover{border-color:#75462b}
+.mobileDock button.selected{background:#ff873f18;color:#ffb17e}
+.mobileDock button.selected svg{color:var(--lab-orange)}
+.scoreRing strong{color:var(--lab-green)}
+.planMetaGrid b{color:var(--lab-green)}
+.planContentHead span{color:var(--lab-orange)}
+.aiTag{background:#352319;color:#ffb17e}
+.formationChoices button.chosen{border-color:var(--lab-orange);background:#352319;color:#ffbd91;box-shadow:0 0 0 2px #ff873f20}
+.formationChoices button.chosen:hover{background:#41271a}
+.analyticsPanel>.panelTitle>svg,.planTips>svg,.tacticsControls>.panelTitle>svg{color:var(--lab-orange)}
+.barTrack i{background:linear-gradient(90deg,#ff873f,#b9f36b)}
+.reportScore{background:radial-gradient(circle at 12% 50%,#4c2d1d,#17251a 65%,#111a14);border-color:#593a27}
+.scoreRing{box-shadow:0 0 35px #ff873f20}
+
+/* New dashboard analytics modules */
+.labGrid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(290px,.85fr);gap:16px;margin:0 0 25px}
+.labChart,.labPitch{min-width:0;padding:21px;border-radius:15px;background:linear-gradient(150deg,#121d16,#0e1712);border:1px solid #2b3a2e}
+.labChart .panelTitle,.labPitch .panelTitle{align-items:flex-start}
+.labChart .panelTitle h3,.labPitch .panelTitle h3{font:800 16px Manrope;color:#f0f5ee;margin:5px 0}
+.labChart .panelTitle p,.labPitch .panelTitle p{font-size:10px;color:#98a99a;margin:0}
+.labLive{display:inline-flex;align-items:center;gap:6px;padding:7px 9px;border:1px solid #33452d;border-radius:999px;color:#b9f36b;font-size:8px;font-weight:900;letter-spacing:1px;white-space:nowrap}
+.labLive i{width:6px;height:6px;border-radius:50%;background:#b9f36b;box-shadow:0 0 9px #b9f36b}
+.labChartSummary{display:flex;align-items:baseline;gap:13px;margin:20px 0 5px}
+.labChartSummary>strong{font:800 32px Manrope;color:#f4f7f1;letter-spacing:-1px}
+.labChartSummary>strong small{font-size:12px;color:#8fa08f;margin-left:4px}
+.labChartSummary>span{font-size:9px;color:#a8b7a7}
+.labChartSummary>span b{font-weight:600;color:#758777}
+.labChartCanvas{height:140px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.labChartCanvas svg{width:100%;height:100%;overflow:visible}
+.labChartEmpty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;text-align:center;color:#849585}
+.labChartEmpty svg{width:25px;height:25px;color:var(--lab-orange)}
+.labChartEmpty b{font-size:10px;color:#dce6d9}
+.labChartEmpty span{font-size:9px}
+.labAxis{display:flex;justify-content:space-between;gap:4px;margin-top:2px;color:#7f9081;font-size:8px}
+.labChartFoot{display:flex;justify-content:space-between;gap:10px;align-items:center;border-top:1px solid #253329;margin-top:15px;padding-top:12px;color:#819181;font-size:8px}
+.labChartFoot>span:first-child{display:flex;align-items:center;gap:6px;color:#c6d2c3}
+.labChartFoot i{width:7px;height:7px;border-radius:50%;background:var(--lab-orange)}
+.labPitch>.panelTitle>svg{color:var(--lab-orange);width:19px;height:19px}
+.labPitchStage{display:flex;justify-content:center;padding:14px 0 10px}
+.labPitchField{width:min(100%,220px);height:245px;position:relative;overflow:hidden;border:1px solid #69816b;border-radius:8px;background:repeating-linear-gradient(0deg,#1d563b 0,#1d563b 12.5%,#194d35 12.5%,#194d35 25%)}
+.labPitchField:before{content:"";position:absolute;inset:0;border:1px solid #ffffff85;pointer-events:none}
+.labPitchHalf{position:absolute;left:0;right:0;top:50%;border-top:1px solid #ffffff85}
+.labPitchCircle{position:absolute;left:50%;top:50%;width:65px;height:65px;border:1px solid #ffffff85;border-radius:50%;transform:translate(-50%,-50%)}
+.labPitchBox{position:absolute;left:26%;width:48%;height:13%;border:1px solid #ffffff85}
+.labPitchBox.top{top:0;border-top:0}.labPitchBox.bottom{bottom:0;border-bottom:0}
+.zone{position:absolute;display:block;border-radius:50%;filter:blur(15px);opacity:.7;pointer-events:none}
+.zone.z1{width:74px;height:55px;left:9%;top:7%;background:#ff713e}
+.zone.z2{width:78px;height:55px;right:7%;top:18%;background:#e6a33c}
+.zone.z3{width:100px;height:70px;left:29%;top:40%;background:#b8e45d}
+.zone.z4{width:65px;height:50px;left:5%;bottom:10%;background:#4bc58a}
+.zone.z5{width:65px;height:50px;right:5%;bottom:8%;background:#ff873f}
+.zoneLabel{position:absolute;z-index:2;font-size:7px;font-weight:900;letter-spacing:1px;color:#ffffffd9;text-shadow:0 1px 4px #001b0e}
+.zl1{top:19%;left:50%;transform:translateX(-50%)}.zl2{top:48%;left:50%;transform:translateX(-50%)}.zl3{bottom:17%;left:50%;transform:translateX(-50%)}
+.labZoneLegend{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;color:#a8b7a7;font-size:8px}
+.labZoneLegend span{display:flex;align-items:center;gap:5px}
+.labZoneLegend i{width:8px;height:8px;border-radius:50%}
+.zoneLow{background:#4bc58a}.zoneMid{background:#b8e45d}.zoneHigh{background:#ff873f}
+.labPitchNote{font-size:8px;line-height:1.6;color:#819181;text-align:center;margin:12px 0 0}
+@media(max-width:900px){.labGrid{grid-template-columns:1fr}.labPitchField{width:min(100%,230px);height:250px}}
+@media(max-width:780px){.labGrid{gap:11px;margin-bottom:19px}.labChart,.labPitch{padding:15px;border-radius:13px}.labChartCanvas{height:125px}.labChartSummary{margin-top:15px}.labChartSummary>strong{font-size:28px}.labChartFoot{font-size:7px}.labPitchField{height:245px}}
+@media(max-width:390px){.labChartFoot{align-items:flex-start;flex-direction:column}.labAxis{font-size:7px}.labLive{font-size:7px;padding:6px 7px}}
