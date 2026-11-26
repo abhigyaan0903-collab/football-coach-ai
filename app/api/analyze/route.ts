@@ -177,6 +177,7 @@ For technique_breakdown choose 4-6 relevant dimensions for this skill (for examp
 
     const { data: saved, error } = await supabase.from("video_analyses").insert({
       user_id: user.id,
+      player_profile_id: playerProfileId,
       storage_path: storagePath,
       original_filename: filename,
       mime_type: mimeType,
