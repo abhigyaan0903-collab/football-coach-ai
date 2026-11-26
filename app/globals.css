@@ -352,3 +352,33 @@ button{color:inherit}.loading{background:#080d0b;color:#a8b8a7}.logoMark{backgro
 .keeperReview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:10px 0 22px}
 .keeperReview>div{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
 @media(max-width:520px){.highlightMoment{grid-template-columns:1fr;gap:7px}.highlightTime{justify-self:start}.keeperReview{grid-template-columns:1fr}}
+
+
+/* Smart football decision simulator */
+.simulatorPanel{border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,#fff,#f7f9f3);padding:19px;margin:22px 0}
+.simulatorHead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.simulatorHead small{font-size:8px;letter-spacing:1.5px;color:#6b8c39;font-weight:800}
+.simulatorHead h2{font-size:19px;margin:6px 0;color:var(--ink)}
+.simulatorHead p{font-size:11px;color:var(--muted);margin:0}
+.simulatorHead>span{font-size:8px;letter-spacing:1px;font-weight:800;color:#6b8c39;background:#edf5e3;border-radius:20px;padding:7px 9px}
+.simulatorControls{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;margin:17px 0}
+.simulatorControls label{display:flex;flex-direction:column;gap:5px;min-width:130px;font-size:8px;letter-spacing:1px;font-weight:800;color:var(--muted)}
+.simulatorControls select{border:1px solid var(--line);border-radius:9px;background:#fff;padding:9px 10px;color:var(--ink);font-size:11px}
+.scenarioCard{border:1px solid #dce6d1;border-radius:13px;background:#fff;padding:16px}
+.scenarioCard>small{font-size:8px;letter-spacing:1.3px;color:#719143;font-weight:800}
+.scenarioCard h3{font-size:15px;color:var(--ink);margin:6px 0}
+.scenarioCard>p{font-size:11px;line-height:1.6;color:var(--muted)}
+.scenarioCard>b{display:block;font-size:12px;color:var(--ink);margin:14px 0 10px}
+.scenarioOptions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.scenarioOptions button{display:flex;align-items:flex-start;gap:9px;text-align:left;border:1px solid var(--line);border-radius:10px;background:#fff;padding:11px;color:var(--ink);font-size:10px;line-height:1.5;cursor:pointer}
+.scenarioOptions button>span{display:grid;place-items:center;flex:0 0 20px;height:20px;border-radius:6px;background:#f0f2ed;font-weight:800}
+.scenarioOptions button:disabled{cursor:default}
+.scenarioOptions button.correct{border-color:#7ab34c;background:#f1f8e9}
+.scenarioOptions button.incorrect{border-color:#d79c85;background:#fff5f1}
+.scenarioFeedback{margin-top:13px;border-radius:10px;background:#f3f7ed;padding:12px}
+.scenarioFeedback b{font-size:11px;color:#385a24}
+.scenarioFeedback p{font-size:10px;line-height:1.6;color:#55624d}
+.scenarioFeedback small{font-size:8px;letter-spacing:.5px;color:#6d7d5f}
+.simulatorEmpty{border:1px dashed #d6dfce;border-radius:11px;padding:22px;text-align:center;color:var(--muted);font-size:10px}
+.simulatorFoot{font-size:9px;line-height:1.5;color:var(--muted);margin:12px 0 0}
+@media(max-width:560px){.simulatorPanel{padding:13px}.simulatorHead h2{font-size:16px}.simulatorControls label{flex:1}.simulatorControls .primary{width:100%}.scenarioOptions{grid-template-columns:1fr}}
