@@ -11,11 +11,26 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Sign in before analysing a video." }, { status: 401 });
     }
 
-    const { mimeType, category, filename, storagePath } = await req.json();
+    const { mimeType, category, filename, storagePath, playerProfileId = null } = await req.json();
 
     if (!storagePath || typeof storagePath !== "string" || !storagePath.startsWith(user.id + "/")) {
       return NextResponse.json({ error: "Invalid video path." }, { status: 400 });
     }
+    if (playerProfileId !== null) {
+      if (typeof playerProfileId !== "string") {
+        return NextResponse.json({ error: "Invalid player profile." }, { status: 400 });
+      }
+      const { data: profile, error: profileError } = await supabase
+        .from("player_profiles")
+        .select("id")
+        .eq("id", playerProfileId)
+        .eq("user_id", user.id)
+        .maybeSingle();
+      if (profileError || !profile) {
+        return NextResponse.json({ error: "That player profile does not belong to your account." }, { status: 403 });
+      }
+    }
+
     if (!["video/mp4", "video/quicktime", "video/webm"].includes(mimeType)) {
       return NextResponse.json({ error: "Upload an MP4, MOV or WebM video." }, { status: 400 });
     }
