@@ -329,7 +329,7 @@ button{color:inherit}.loading{background:#080d0b;color:#a8b8a7}.logoMark{backgro
 .boardMode button{border:0;border-radius:7px;background:transparent;color:var(--muted);padding:8px 11px;font-size:10px;font-weight:700;cursor:pointer}
 .boardMode button.active{background:#fff;color:var(--ink);box-shadow:0 1px 5px #17203314}
 .boardToolbar label{display:flex;flex-direction:column;gap:5px;min-width:145px;color:var(--muted);font-size:8px;font-weight:800;letter-spacing:1px}
-.boardToolbar select{border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);padding:9px 10px;font:600 11px inherit}
+.boardToolbar select{border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);padding:9px 10px;font-size:11px;font-weight:600;font-family:inherit}
 .pitch3d{transform:perspective(950px) rotateX(43deg) scale(.88);transform-origin:center 58%;margin-top:-18px;margin-bottom:-12px;box-shadow:0 22px 32px #0b151b38;transition:transform .35s ease}
 .pitchPanel{overflow:hidden}
 .passingNetwork{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;overflow:visible}
