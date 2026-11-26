@@ -382,3 +382,30 @@ button{color:inherit}.loading{background:#080d0b;color:#a8b8a7}.logoMark{backgro
 .simulatorEmpty{border:1px dashed #d6dfce;border-radius:11px;padding:22px;text-align:center;color:var(--muted);font-size:10px}
 .simulatorFoot{font-size:9px;line-height:1.5;color:var(--muted);margin:12px 0 0}
 @media(max-width:560px){.simulatorPanel{padding:13px}.simulatorHead h2{font-size:16px}.simulatorControls label{flex:1}.simulatorControls .primary{width:100%}.scenarioOptions{grid-template-columns:1fr}}
+
+
+/* Player session comparison */
+.comparisonPanel{border:1px solid var(--line);border-radius:16px;background:#fff;padding:17px;margin:18px 0}
+.comparisonHead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.comparisonHead small,.comparisonPanel>div>small{font-size:8px;letter-spacing:1.3px;color:#78964d;font-weight:800}
+.comparisonHead h3,.comparisonPanel h3{font-size:15px;color:var(--ink);margin:6px 0}
+.comparisonHead p,.comparisonPanel>div>p{font-size:10px;color:var(--muted);margin:0}
+.comparisonHead>span{font-size:8px;letter-spacing:.6px;color:#627b42;background:#eff5e8;padding:7px 9px;border-radius:20px;font-weight:800}
+.comparisonSelectors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0}
+.comparisonSelectors label{display:flex;flex-direction:column;gap:5px;color:var(--muted);font-size:8px;letter-spacing:.8px;font-weight:800}
+.comparisonSelectors select{min-width:0;width:100%;border:1px solid var(--line);border-radius:9px;padding:9px;background:#fff;color:var(--ink);font-size:10px}
+.comparisonScores{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.comparisonScores>div{border:1px solid var(--line);border-radius:11px;padding:11px;min-width:0}
+.comparisonScores small{display:block;color:var(--muted);font-size:7px;letter-spacing:.6px;text-transform:uppercase}
+.comparisonScores strong{display:block;color:var(--ink);font-size:24px;margin-top:7px}
+.comparisonScores strong i{font-size:9px;font-style:normal;color:var(--muted);margin-left:3px}
+.comparisonScores .comparisonDelta{background:#f6f8f2}
+.comparisonScores .comparisonDelta strong{font-size:20px}
+.comparisonScores .comparisonDelta span{font-size:8px;color:var(--muted)}
+.comparisonInsights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:10px}
+.comparisonInsights>div{border-radius:10px;background:#f8f9f6;padding:11px}
+.comparisonInsights b{font-size:10px;color:var(--ink)}
+.comparisonInsights ul{padding-left:16px;margin:7px 0;color:var(--muted);font-size:9px;line-height:1.6}
+.comparisonInsights p,.comparisonNote{font-size:9px;color:var(--muted);line-height:1.55}
+.comparisonNote{margin:12px 0 0}
+@media(max-width:540px){.comparisonPanel{padding:13px}.comparisonHead{flex-direction:column}.comparisonSelectors,.comparisonInsights{grid-template-columns:1fr}.comparisonScores strong{font-size:20px}}
