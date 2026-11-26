@@ -6,7 +6,7 @@ import VoiceCoachControls from "@/components/voice-coach-controls";
 import SmartTrainingSimulator from "@/components/smart-training-simulator";
 import PerformanceComparison from "@/components/performance-comparison";
 import AcademyIntelligence from "@/components/academy-intelligence";
-import {Activity,ArrowUpRight,BarChart3,Bot,Check,Clock3,Dumbbell,FileVideo,Goal,LayoutDashboard,LogOut,Menu,Plus,Send,ShieldCheck,Sparkles,Target,UploadCloud,UserRound,Video,X,Zap,ClipboardList,Users,Shield,TrendingUp,Trash2} from "lucide-react";
+import {Activity,ArrowUpRight,BarChart3,Bot,Check,Clock3,Dumbbell,FileVideo,Goal,LayoutDashboard,Menu,Plus,Send,ShieldCheck,Sparkles,Target,UploadCloud,UserRound,Video,X,Zap,ClipboardList,Users,Shield,TrendingUp,Trash2} from "lucide-react";
 type A={id:string;original_filename:string;skill_category:string;score:number|null;status:string;created_at:string;analysis:any;player_profile_id?:string|null};
 type PlayerProfile={id:string;nickname:string|null;position:string|null;dominant_foot:string|null;experience_level:string;created_at:string};
 type M={role:"user"|"assistant";content:string};
