@@ -310,3 +310,14 @@ button{color:inherit}.loading{background:#080d0b;color:#a8b8a7}.logoMark{backgro
 .poseDisclaimer,.poseEmpty{font-size:10px;line-height:1.6;color:#9baa98;margin:12px 0 0}
 .poseEmpty{padding:14px;border:1px dashed #465342;border-radius:12px}
 @media(max-width:640px){.posePanel{padding:13px;border-radius:14px}.poseContent{grid-template-columns:1fr}.poseFigureWrap{min-height:220px}.poseFigureWrap svg{height:220px}.poseKeypoints{max-height:200px}.poseHeading h3{font-size:15px}}
+
+
+/* Voice AI coach controls */
+.voiceControls{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:0 18px 12px}
+.voiceButton{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:9px 12px;font:600 11px inherit;cursor:pointer}
+.voiceButton:disabled{opacity:.45;cursor:not-allowed}
+.voiceButton.active{background:#eff8e5;border-color:#b7d99a;color:#29421d}
+.voiceDot{width:7px;height:7px;border-radius:50%;background:#8c9a86}
+.voiceButton.active .voiceDot{background:#e05252;box-shadow:0 0 0 4px #e0525220}
+.voicePrivacy,.voiceUnavailable{font-size:9px;color:var(--muted);flex-basis:100%}
+@media(max-width:520px){.voiceControls{padding:0 12px 10px}.voiceButton{font-size:10px;padding:8px 10px}}
