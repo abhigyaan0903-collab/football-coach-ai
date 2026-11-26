@@ -314,7 +314,7 @@ button{color:inherit}.loading{background:#080d0b;color:#a8b8a7}.logoMark{backgro
 
 /* Voice AI coach controls */
 .voiceControls{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:0 18px 12px}
-.voiceButton{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:9px 12px;font:600 11px inherit;cursor:pointer}
+.voiceButton{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:9px 12px;font-size:11px;font-weight:600;font-family:inherit;cursor:pointer}
 .voiceButton:disabled{opacity:.45;cursor:not-allowed}
 .voiceButton.active{background:#eff8e5;border-color:#b7d99a;color:#29421d}
 .voiceDot{width:7px;height:7px;border-radius:50%;background:#8c9a86}
