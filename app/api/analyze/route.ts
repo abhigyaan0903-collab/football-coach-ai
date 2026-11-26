@@ -60,9 +60,29 @@ Return valid JSON only, without Markdown fences, using this exact structure:
   "drills": [
     {"name":"drill name","instructions":"clear step-by-step instructions","setup":"equipment and layout, with a simple alternative","sets":"sensible set count","reps":"duration or repetitions with rest","coaching_cues":["cue 1","cue 2"],"progression":"one safe way to make it more challenging later"}
   ],
-  "confidence_note":"explain camera angle, clip length, visibility, sampling limits and what could not be assessed"
+  "confidence_note":"explain camera angle, clip length, visibility, sampling limits and what could not be assessed",
+  "pose_frames":[
+    {
+      "timestamp":"approximate timestamp or frame label",
+      "body_visible":true,
+      "keypoints":[
+        {"name":"left_shoulder","x":0-100,"y":0-100,"visibility":0-1},
+        {"name":"right_shoulder","x":0-100,"y":0-100,"visibility":0-1},
+        {"name":"left_elbow","x":0-100,"y":0-100,"visibility":0-1},
+        {"name":"right_elbow","x":0-100,"y":0-100,"visibility":0-1},
+        {"name":"left_wrist","x":0-100,"y":0-100,"visibility":0-1},
+        {"name":"right_wrist","x":0-100,"y":0-100,"visibility":0-1},
+        {"name":"left_hip","x":0-100,"y":0-100,"visibility":0-1},
+        {"name":"right_hip","x":0-100,"y":0-100,"visibility":0-1},
+        {"name":"left_knee","x":0-100,"y":0-100,"visibility":0-1},
+        {"name":"right_knee","x":0-100,"y":0-100,"visibility":0-1},
+        {"name":"left_ankle","x":0-100,"y":0-100,"visibility":0-1},
+        {"name":"right_ankle","x":0-100,"y":0-100,"visibility":0-1}
+      ]
+    }
+  ]
 }
-For technique_breakdown choose 4-6 relevant dimensions for this skill (for example balance, body positioning, approach, contact/receiving technique, follow-through, decision-making, recovery). Use null ratings when evidence is insufficient; never fill gaps with assumptions. Provide 3 practical drills matched to the observed priorities. Be constructive, precise, age-appropriate and safety-aware. Scores are coaching estimates, not scientific measurements or guarantees.`;
+For technique_breakdown choose 4-6 relevant dimensions for this skill (for example balance, body positioning, approach, contact/receiving technique, follow-through, decision-making, recovery). Use null ratings when evidence is insufficient; never fill gaps with assumptions. Provide 3 practical drills matched to the observed priorities. Be constructive, precise, age-appropriate and safety-aware. For pose_frames, return up to 5 representative moments spread across the clip, only when the player's relevant joints are clearly visible. Coordinates are normalized to the full video frame (x=0 left to 100 right, y=0 top to 100 bottom), not to a cropped body. Include only landmarks you can actually locate; do not invent hidden or occluded joints. If no reliable landmarks can be located, return an empty array. These are approximate visual landmarks, NOT motion-capture or clinical biomechanics measurements. Scores are coaching estimates, not scientific measurements or guarantees.`;
 
     let response: Response | null = null;
     let data: any = null;
