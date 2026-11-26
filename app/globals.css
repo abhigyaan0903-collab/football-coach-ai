@@ -340,3 +340,15 @@ button{color:inherit}.loading{background:#080d0b;color:#a8b8a7}.logoMark{backgro
 .passingDetails p{font-size:10px;color:var(--muted);margin:7px 0 0;line-height:1.5}
 .passingDetails small{display:block;margin-top:10px;color:var(--ink);font-size:10px;line-height:1.5}
 @media(max-width:600px){.boardToolbar{align-items:stretch}.boardToolbar .primary{width:100%}.boardToolbar label{flex:1}.pitch3d{transform:perspective(850px) rotateX(35deg) scale(.9);margin-top:-8px;margin-bottom:-5px}}
+
+
+/* Match moments and goalkeeper specialist report */
+.highlightTimeline{display:grid;gap:9px;margin:10px 0 22px}
+.highlightMoment{display:grid;grid-template-columns:92px 1fr;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+.highlightTime{align-self:start;display:inline-flex;justify-content:center;border-radius:8px;background:#eff5e8;color:#49652e;padding:7px 8px;font-size:9px;font-weight:800}
+.highlightMoment b,.keeperReview b{font-size:11px;color:var(--ink)}
+.highlightMoment p,.keeperReview p{font-size:10px;line-height:1.55;color:var(--muted);margin:5px 0}
+.highlightMoment small{font-size:8px;color:#87927f;text-transform:uppercase;letter-spacing:.5px}
+.keeperReview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:10px 0 22px}
+.keeperReview>div{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}
+@media(max-width:520px){.highlightMoment{grid-template-columns:1fr;gap:7px}.highlightTime{justify-self:start}.keeperReview{grid-template-columns:1fr}}
